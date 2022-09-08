@@ -7,7 +7,7 @@
                     v-for="category in categories"
                     :key="category.categoryId"
                     :title="category.title"
-                    @click="openSubcategories"
+                    @click="openSubcategories(category.categoryId)"
                 />
             </div>
         </div>
@@ -21,12 +21,15 @@ import { useCategoriesStore } from '@/stores/categories';
 import ContentSection from '@/components/_common/ContentSection.vue';
 import AddNewItem from '@/components/_common/UI/AddNewItem.vue';
 import ListItem from '@/components/_common/UI/ListItem.vue';
+import { useSubcategoriesStore } from '@/stores/subcategories';
 
 const categoriesStore = useCategoriesStore();
+const subcategoriesStore = useSubcategoriesStore();
 
 const { categories } = storeToRefs(categoriesStore);
 
-function openSubcategories() {
+async function openSubcategories(categoryId: number) {
+    await subcategoriesStore.getSubcategories(categoryId);
     console.log('Открылась подкатегория');
 }
 
