@@ -1,0 +1,7 @@
+.nuxt
+assets
+hack_manifests
+maximumtest-frontend
+node_modules
+static
+dist

@@ -1,0 +1,51 @@
+module.exports = {
+    env: {
+        browser: true,
+        es2021: true,
+        node: true,
+        'jest/globals': true,
+    },
+    extends: [
+        'airbnb-base',
+        'eslint:recommended',
+        'plugin:vue/recommended',
+        'plugin:promise/recommended',
+        'plugin:jest/recommended',
+        'prettier',
+    ],
+    parser: 'vue-eslint-parser',
+    parserOptions: {
+        parser: '@typescript-eslint/parser',
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+    },
+    plugins: ['vue', 'prettier', 'promise', 'jest'],
+    globals: {
+        axios: true,
+        ymaps: true,
+        Vue: true,
+    },
+    rules: {
+        'vue/multi-word-component-names': 'off',
+        'no-console': 'off',
+        'no-plusplus': 'off',
+        'no-underscore-dangle': 'off',
+        'consistent-return': 'off',
+        'import/prefer-default-export': 'off', // remove and correct
+        'no-param-reassign': 'off',
+        'default-param-last': 'off', // remove and correct
+        'import/extensions': 'off',
+        'import/no-unresolved': 'off',
+        'vue/no-v-html': 'off',
+        'func-names': 'off',
+        'import/no-extraneous-dependencies': 'off',
+        radix: 'off',
+        'arrow-body-style': 'off',
+        'prettier/prettier': ['error'],
+        'jest/no-mocks-import': 'off',
+        'jest/no-conditional-expect': 'off',
+        'global-require': 'off',
+        'import/no-dynamic-require': 'off',
+        'lines-between-class-members': 'off',
+    },
+};
