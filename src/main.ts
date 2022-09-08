@@ -5,6 +5,8 @@ import { createPinia } from 'pinia';
 import App from './App.vue';
 import router from './router';
 
+import './assets/global.scss';
+
 const pinia = createPinia();
 
 axios.interceptors.request.use((config) => ({
