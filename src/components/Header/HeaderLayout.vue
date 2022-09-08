@@ -13,18 +13,13 @@ import { HEADER } from '@/const-data/header/header';
 
 <style lang="scss" scoped>
 .header {
-    position: fixed;
-    left: 0;
-    top: 0;
-    right: 0;
-    z-index: 1000;
-    padding: 9px 0;
     border-bottom: 1px solid $light-gray;
 
     &__title {
         font-size: 28px;
         line-height: 42px;
         font-weight: 600;
+        padding: 9px 20px;
     }
 }
 </style>
