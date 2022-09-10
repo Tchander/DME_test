@@ -2,32 +2,52 @@
     <div class="equipments">
         <add-new-item :title="MENU_TITLES.EQUIPMENTS" />
         <div class="equipments__wrapper">
-            <div class="equipments__search"></div>
+            <search-item v-model="state.searchEquipment" class="equipments__search" />
             <div class="equipments__cards">
-                <equipment-card
-                    v-for="equipment in equipments"
-                    :key="equipment.equipmentId"
-                    v-bind="equipment"
-                />
+                <TransitionGroup name="list">
+                    <equipment-card
+                        v-for="equipment in filteredEquipments"
+                        :key="equipment.equipmentId"
+                        v-bind="equipment"
+                    />
+                </TransitionGroup>
             </div>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, watch } from 'vue';
+import { computed, onMounted, reactive, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { storeToRefs } from 'pinia';
 import { useEquipmentsStore } from '@/stores/equipments';
 import AddNewItem from '@/components/_common/UI/AddNewItem.vue';
 import EquipmentCard from '@/components/_common/UI/EquipmentCard.vue';
+import SearchItem from '@/components/_common/UI/SearchItem.vue';
+import { IEquipmentData } from '@/interfaces/stores/Equipments';
 import { MENU_TITLES } from '@/const-data/_common/titles';
+
+interface State {
+    searchEquipment: string;
+}
+
+const state = reactive<State>({
+    searchEquipment: '',
+});
 
 const equipmentStore = useEquipmentsStore();
 
 const { equipments } = storeToRefs(equipmentStore);
 
 const route = useRoute();
+
+const filteredEquipments = computed<IEquipmentData[]>(() => {
+    // Сделал фильтр по тексту, а не заголовку, так как фейковое api не имеет заголовка
+    // и он по дефолту одинаковый у всех карточек
+    return equipments.value.filter((equipment) => {
+        return equipment.text.toLowerCase().includes(state.searchEquipment.toLowerCase());
+    });
+});
 
 async function getData() {
     await equipmentStore.getEquipments(route?.params?.subcatId);
@@ -46,6 +66,15 @@ onMounted(async () => {
 </script>
 
 <style lang="scss" scoped>
+.list-enter-active,
+.list-leave-active {
+    transition: opacity 0.3s ease;
+}
+.list-enter-from,
+.list-leave-to {
+    opacity: 0;
+}
+
 .equipments {
     width: 100%;
     border-right: 1px solid $light-gray;
@@ -70,9 +99,8 @@ onMounted(async () => {
     }
 
     &__search {
-        // Пока что плейсхолдер
         width: 100%;
-        height: 40px;
+        //height: 40px;
         margin-bottom: 10px;
     }
 
