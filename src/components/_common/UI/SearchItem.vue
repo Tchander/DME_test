@@ -4,7 +4,7 @@
             v-model="model"
             type="text"
             class="search"
-            placeholder="Search category or HCPCS name "
+            :placeholder="PLACEHOLDERS.SEARCH_EQUIPMENTS"
         />
         <search-icon class="search__icon" />
     </div>
@@ -14,13 +14,13 @@
 import { defineEmits, defineProps, computed } from 'vue';
 import SearchIcon from '@/components/_common/SvgTemplates/SearchIcon.vue';
 import { EVENTS_MAPPER } from '@/const-data/_common/emits';
+import { PLACEHOLDERS } from '@/const-data/_common/titles';
 
-const props = defineProps({
-    modelValue: {
-        type: String,
-        default: '',
-    },
-});
+interface Props {
+    modelValue: string;
+}
+
+const props = defineProps<Props>();
 
 const emit = defineEmits([`${EVENTS_MAPPER.UPDATE}:modelValue`]);
 const model = computed({

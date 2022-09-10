@@ -1,20 +1,14 @@
 <template>
-    <content-section>
-        <div>Тут будет форма авторизации</div>
-    </content-section>
+    <authorization />
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue';
-import { useRouter } from 'vue-router';
-import ContentSection from '@/components/_common/ContentSection.vue';
-import { ROUTES } from '@/const-data/_common/routesInfo';
-
-const router = useRouter();
-
-onMounted(() => {
-    router.push({ name: ROUTES.CATALOG.name });
-});
+import Authorization from '@/components/Popups/Authorization.vue';
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.home {
+    width: 100vh;
+    height: 100vh;
+}
+</style>
