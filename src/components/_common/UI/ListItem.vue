@@ -1,7 +1,9 @@
 <template>
-    <div class="item">
+    <div class="item" :class="{ item_active: isActive }">
         <h4 class="item__title" v-html="title" />
-        <edit-pencil class="item__icon" @click.stop="openModal" />
+        <div class="item__icon" @click.stop="openModal">
+            <edit-pencil />
+        </div>
     </div>
 </template>
 
@@ -11,9 +13,10 @@ import EditPencil from '@/components/_common/SvgTemplates/EditPencil.vue';
 
 interface Props {
     title: string;
+    isActive?: boolean;
 }
 
-const { title } = defineProps<Props>();
+const { title, isActive = false } = defineProps<Props>();
 
 function openModal() {
     console.log('Модалка открыта');
@@ -25,9 +28,11 @@ function openModal() {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    max-height: 40px;
     padding: 11px 12px 11px 20px;
     cursor: pointer;
     border-top: 1px solid $light-gray;
+    box-sizing: border-box;
     transition: background-color 0.3s ease-in-out;
 
     &__title {
@@ -38,7 +43,13 @@ function openModal() {
         transition: color 0.3s ease-in-out;
     }
 
-    &:hover {
+    &__icon {
+        width: 24px;
+        height: 24px;
+    }
+
+    &:hover,
+    &_active {
         background-color: $grayBackground;
 
         .item__title {

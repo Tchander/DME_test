@@ -3,6 +3,7 @@ import { ROUTES } from '@/const-data/_common/routesInfo';
 
 const Home = () => import('@/views/Home.vue');
 const Catalog = () => import('@/views/Catalog.vue');
+const Subcategories = () => import('@/components/Subcategories.vue');
 
 const routes = [
     {
@@ -14,6 +15,12 @@ const routes = [
         path: ROUTES.CATALOG.path,
         name: ROUTES.CATALOG.name,
         component: Catalog,
+        children: [
+            {
+                path: `${ROUTES.CATALOG.path}/:catId`,
+                component: Subcategories,
+            },
+        ],
     },
     {
         path: '/:catchAll(.*)',

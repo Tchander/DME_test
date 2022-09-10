@@ -9,7 +9,7 @@ export interface IEquipmentData {
     subcategoryId: number;
     equipmentId: number;
     title: string;
-    url: string;
+    image: string;
 }
 
 export interface IEquipmentState {

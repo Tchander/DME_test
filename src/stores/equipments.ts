@@ -20,7 +20,7 @@ export const useEquipmentsStore = defineStore(STORE_NAMESPACES.EQUIPMENTS, {
                     subcategoryId: data.albumId,
                     equipmentId: data.id,
                     title: data.title,
-                    url: data.url,
+                    image: data.url,
                 }));
                 console.log(this.equipments);
             } catch (e) {

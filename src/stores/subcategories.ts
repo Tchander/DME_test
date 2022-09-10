@@ -14,7 +14,7 @@ export const useSubcategoriesStore = defineStore(STORE_NAMESPACES.SUBCATEGORIES,
     getters: {},
 
     actions: {
-        async getSubcategories(categoryId: number) {
+        async getSubcategories(categoryId: string | string[]) {
             try {
                 const response: ISubcategoriesBackendData[] = await api.get(
                     'subcategories',
@@ -25,7 +25,6 @@ export const useSubcategoriesStore = defineStore(STORE_NAMESPACES.SUBCATEGORIES,
                     subcategoryId: data.id,
                     title: data.title,
                 }));
-                console.log(this.subcategories);
             } catch (e) {
                 console.error(e);
             }

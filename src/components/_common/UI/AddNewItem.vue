@@ -1,7 +1,9 @@
 <template>
     <div class="item__wrapper">
         <h3 class="item__title" v-html="title" />
-        <add-button class="item__button" @click="openModal" />
+        <div class="item__button" @click="openModal">
+            <add-button />
+        </div>
     </div>
 </template>
 
@@ -38,6 +40,8 @@ function openModal() {
 
     &__button {
         cursor: pointer;
+        width: 30px;
+        height: 30px;
     }
 }
 </style>
