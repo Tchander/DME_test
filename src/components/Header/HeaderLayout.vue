@@ -16,9 +16,7 @@ import { HEADER } from '@/const-data/header/header';
     border-bottom: 1px solid $light-gray;
 
     &__title {
-        font-size: 28px;
-        line-height: 42px;
-        font-weight: 600;
+        @include font(28, 42, 600);
         padding: 9px 20px;
     }
 }

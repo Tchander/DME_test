@@ -29,13 +29,12 @@ function openModal() {
         justify-content: space-between;
         align-items: center;
         padding: 9px 9px 9px 20px;
+        max-width: 260px;
     }
 
     &__title {
+        @include font(22, 33, 600);
         color: $advancedColor;
-        font-size: 22px;
-        line-height: 33px;
-        font-weight: 600;
     }
 
     &__button {

@@ -4,6 +4,7 @@ import { ROUTES } from '@/const-data/_common/routesInfo';
 const Home = () => import('@/views/Home.vue');
 const Catalog = () => import('@/views/Catalog.vue');
 const Subcategories = () => import('@/components/Subcategories.vue');
+const Equipments = () => import('@/components/Equipments.vue');
 
 const routes = [
     {
@@ -17,13 +18,21 @@ const routes = [
         component: Catalog,
         children: [
             {
-                path: `${ROUTES.CATALOG.path}/:catId`,
+                path: ROUTES.SUBCATEGORIES.path,
+                name: ROUTES.SUBCATEGORIES.name,
                 component: Subcategories,
+                children: [
+                    {
+                        path: ROUTES.EQUIPMENTS.path,
+                        name: ROUTES.EQUIPMENTS.name,
+                        component: Equipments,
+                    },
+                ],
             },
         ],
     },
     {
-        path: '/:catchAll(.*)',
+        path: ROUTES.CATCH_ALL.path,
         redirect: ROUTES.HOME.path,
     },
 ];

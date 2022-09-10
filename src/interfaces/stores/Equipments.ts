@@ -8,7 +8,7 @@ export interface IEquipmentBackendData {
 export interface IEquipmentData {
     subcategoryId: number;
     equipmentId: number;
-    title: string;
+    text: string;
     image: string;
 }
 

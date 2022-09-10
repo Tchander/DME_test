@@ -9,4 +9,15 @@ export const ROUTES: IRoutes = {
         path: '/catalog',
         name: 'catalog',
     },
+    SUBCATEGORIES: {
+        path: '/catalog/:catId',
+        name: 'subcategories',
+    },
+    EQUIPMENTS: {
+        path: '/catalog/:catId/:subcatId',
+        name: 'equipments',
+    },
+    CATCH_ALL: {
+        path: '/:catchAll(.*)',
+    },
 };
