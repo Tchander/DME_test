@@ -9,5 +9,10 @@ export const PLACEHOLDERS = {
 };
 
 export const POPUP_TITLES = {
-    AUTHORIZATION: 'Авторизация',
+    AUTHORIZATION: 'Authorization',
+    ADD_CATEGORY: 'Add category',
+    ADD_SUBCATEGORY: 'Add subcategory',
+    EDIT_CATEGORY: 'Edit category',
+    EDIT_SUBCATEGORY: 'Edit subcategory',
+    ADD_EQUIPMENT: 'Add equipment',
 };

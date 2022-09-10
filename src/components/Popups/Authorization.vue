@@ -4,7 +4,7 @@
             <h2 class="popup__title" v-html="POPUP_TITLES.AUTHORIZATION" />
             <div class="input-blocks">
                 <input-field
-                    v-for="(item, index) in state"
+                    v-for="(item, index) in state.inputList"
                     :key="index"
                     v-model="item.value"
                     class="input-block"
@@ -15,7 +15,7 @@
             </div>
             <submit-button
                 class="popup__button"
-                :btn-text="'Войти'"
+                :btn-text="state.btnText"
                 :disabled="isDisabled"
             />
         </form>
@@ -28,44 +28,45 @@ import { useRouter } from 'vue-router';
 import Popup from '@/components/_common/UI/Popup.vue';
 import SubmitButton from '@/components/_common/UI/SubmitButton.vue';
 import InputField from '@/components/_common/UI/InputField.vue';
+import { IInputData } from '@/interfaces/_common/Input';
 import { ROUTES } from '@/const-data/_common/routesInfo';
 import { POPUP_TITLES } from '@/const-data/_common/titles';
 
-interface InputData {
-    name: string;
-    value: string;
-    type: string;
-    placeholder: string;
-    label: string;
+interface State {
+    inputList: IInputData[];
+    btnText: string;
 }
 
-const state = reactive<InputData[]>([
-    {
-        name: 'login',
-        value: '',
-        type: 'text',
-        placeholder: 'Логин',
-        label: 'Логин:',
-    },
-    {
-        name: 'password',
-        value: '',
-        type: 'password',
-        placeholder: 'Пароль',
-        label: 'Пароль:',
-    },
-]);
+const state = reactive<State>({
+    inputList: [
+        {
+            name: 'login',
+            value: '',
+            type: 'text',
+            placeholder: 'Login',
+            label: 'Login:',
+        },
+        {
+            name: 'password',
+            value: '',
+            type: 'password',
+            placeholder: 'Password',
+            label: 'Password:',
+        },
+    ],
+    btnText: 'Log in',
+});
 
 const router = useRouter();
 
 const isDisabled = computed<boolean>(() => {
     let counter = 0;
-    state.forEach((el) => {
+    state.inputList.forEach((el) => {
         if (el.value !== '') {
             counter++;
         }
     });
-    return counter !== state.length;
+    return counter !== state.inputList.length;
 });
 
 async function submit() {
@@ -77,26 +78,6 @@ async function submit() {
 </script>
 
 <style lang="scss" scoped>
-.popup {
-    &__wrapper {
-        display: flex;
-        flex-direction: column;
-        box-sizing: border-box;
-        padding: 40px;
-    }
-
-    &__title {
-        @include font(32, 38, 600);
-        text-align: center;
-        color: $mainColor;
-        margin-bottom: 40px;
-    }
-
-    &__button {
-        margin-top: 40px;
-    }
-}
-
 .input-block {
     margin-bottom: 20px;
 }

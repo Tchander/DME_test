@@ -43,3 +43,23 @@ input {
     border-top: 0;
     max-width: 260px;
 }
+
+.popup {
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+        padding: 40px;
+    }
+
+    &__title {
+        @include font(32, 38, 600);
+        text-align: center;
+        color: $mainColor;
+        margin-bottom: 40px;
+    }
+
+    &__button {
+        margin-top: 40px;
+    }
+}

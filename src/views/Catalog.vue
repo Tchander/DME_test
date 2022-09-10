@@ -2,12 +2,16 @@
     <content-section>
         <div class="catalog">
             <div class="menu-column">
-                <add-new-item :title="MENU_TITLES.CATEGORIES" />
+                <add-new-item
+                    :name="POPUP_MAPPER.ADD_CATEGORY"
+                    :title="MENU_TITLES.CATEGORIES"
+                />
                 <list-item
                     v-for="category in categories"
                     :key="category.categoryId"
                     :title="category.title"
                     :is-active="state.activeCategoryId === category.categoryId"
+                    :name="POPUP_MAPPER.EDIT_CATEGORY"
                     @click="openSubcategories(category.categoryId)"
                 />
             </div>
@@ -26,6 +30,7 @@ import AddNewItem from '@/components/_common/UI/AddNewItem.vue';
 import ListItem from '@/components/_common/UI/ListItem.vue';
 import { MENU_TITLES } from '@/const-data/_common/titles';
 import { ROUTES } from '@/const-data/_common/routesInfo';
+import { POPUP_MAPPER } from '@/const-data/_common/popup';
 
 interface State {
     activeCategoryId: number | null;

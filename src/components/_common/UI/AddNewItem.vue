@@ -9,16 +9,20 @@
 
 <script setup lang="ts">
 import { defineProps } from 'vue';
+import { usePopupStore } from '@/stores/popup';
 import AddButton from '@/components/_common/SvgTemplates/AddButton.vue';
 
 interface Props {
     title: string;
+    name: string;
 }
 
-const { title } = defineProps<Props>();
+const { title, name } = defineProps<Props>();
+
+const popupStore = usePopupStore();
 
 function openModal() {
-    console.log('Модалка открылась');
+    popupStore.showPopup(name);
 }
 </script>
 

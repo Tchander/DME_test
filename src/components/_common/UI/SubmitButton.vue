@@ -23,7 +23,6 @@ function onClick() {
 <style lang="scss" scoped>
 button {
     position: relative;
-    margin: 0;
     padding: 17px 31px;
     display: inline-flex;
     align-items: center;

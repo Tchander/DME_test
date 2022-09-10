@@ -1,6 +1,9 @@
 <template>
     <div class="equipments">
-        <add-new-item :title="MENU_TITLES.EQUIPMENTS" />
+        <add-new-item
+            :name="POPUP_MAPPER.ADD_EQUIPMENT"
+            :title="MENU_TITLES.EQUIPMENTS"
+        />
         <div class="equipments__wrapper">
             <search-item v-model="state.searchEquipment" class="equipments__search" />
             <div class="equipments__cards">
@@ -26,6 +29,7 @@ import EquipmentCard from '@/components/_common/UI/EquipmentCard.vue';
 import SearchItem from '@/components/_common/UI/SearchItem.vue';
 import { IEquipmentData } from '@/interfaces/stores/Equipments';
 import { MENU_TITLES } from '@/const-data/_common/titles';
+import { POPUP_MAPPER } from '@/const-data/_common/popup';
 
 interface State {
     searchEquipment: string;

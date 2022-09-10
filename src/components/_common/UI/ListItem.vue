@@ -9,17 +9,21 @@
 
 <script setup lang="ts">
 import { defineProps } from 'vue';
+import { usePopupStore } from '@/stores/popup';
 import EditPencil from '@/components/_common/SvgTemplates/EditPencil.vue';
 
 interface Props {
     title: string;
     isActive?: boolean;
+    name: string;
 }
 
-const { title, isActive = false } = defineProps<Props>();
+const { title, isActive = false, name } = defineProps<Props>();
+
+const popupStore = usePopupStore();
 
 function openModal() {
-    console.log('Модалка открыта');
+    popupStore.showPopup(name);
 }
 </script>
 
