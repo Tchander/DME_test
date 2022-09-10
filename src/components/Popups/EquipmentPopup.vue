@@ -1,7 +1,7 @@
 <template>
     <popup class="authorization-popup">
         <form class="popup__wrapper" autocomplete="off" @submit.prevent="submit">
-            <h2 class="popup__title" v-html="POPUP_TITLES.ADD_EQUIPMENT" />
+            <h2 class="popup__title" v-html="popupTitle" />
             <div class="input-blocks">
                 <input-field
                     v-model="state.text.value"
@@ -28,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, reactive } from 'vue';
+import { computed, defineProps, reactive } from 'vue';
 import { useRoute } from 'vue-router';
 import { useEquipmentsStore } from '@/stores/equipments';
 import { usePopupStore } from '@/stores/popup';
@@ -36,18 +36,24 @@ import Popup from '@/components/_common/UI/Popup.vue';
 import SubmitButton from '@/components/_common/UI/SubmitButton.vue';
 import InputField from '@/components/_common/UI/InputField.vue';
 import { IInputData } from '@/interfaces/_common/Input';
-import { POPUP_TITLES } from '@/const-data/_common/titles';
+import { POPUP_TITLES, POPUP_BUTTON_TEXT } from '@/const-data/_common/popup';
 
-const equipmentStore = useEquipmentsStore();
-const popupStore = usePopupStore();
-
-const route = useRoute();
+interface Props {
+    name: string;
+}
 
 interface State {
     text: IInputData;
     image: IInputData;
     btnText: string;
 }
+
+const equipmentStore = useEquipmentsStore();
+const popupStore = usePopupStore();
+
+const route = useRoute();
+
+const { name } = defineProps<Props>();
 
 const state = reactive<State>({
     text: {
@@ -64,7 +70,11 @@ const state = reactive<State>({
         placeholder: 'Image link',
         label: 'Image link:',
     },
-    btnText: 'Add',
+    btnText: POPUP_BUTTON_TEXT[name],
+});
+
+const popupTitle = computed<string>(() => {
+    return `${state.btnText} ${POPUP_TITLES.CATEGORY}`;
 });
 
 const isDisabled = computed<boolean>(() => {
@@ -80,6 +90,7 @@ async function submit() {
             state.text.value,
             state.image.value,
             route.params.subcatId,
+            popupStore.id,
         );
     } catch (e) {
         console.error(e);

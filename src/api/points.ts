@@ -6,4 +6,5 @@ export default <TPoints>{
         `http://jsonplaceholder.typicode.com/users/${categoryId}/albums`,
     equipments: (subcategoryId: number) =>
         `http://jsonplaceholder.typicode.com/albums/${subcategoryId}/photos`,
+    'edit-subcategory': 'http://jsonplaceholder.typicode.com/albums',
 };

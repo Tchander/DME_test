@@ -14,15 +14,16 @@ import AddButton from '@/components/_common/SvgTemplates/AddButton.vue';
 
 interface Props {
     title: string;
-    name: string;
+    popup: string;
+    name?: string;
 }
 
-const { title, name } = defineProps<Props>();
+const { title, popup, name } = defineProps<Props>();
 
 const popupStore = usePopupStore();
 
 function openModal() {
-    popupStore.showPopup(name);
+    popupStore.showPopup(popup, name);
 }
 </script>
 

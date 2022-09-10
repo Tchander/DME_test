@@ -1,7 +1,7 @@
 <template>
     <popup class="authorization-popup">
         <form class="popup__wrapper" autocomplete="off" @submit.prevent="submit">
-            <h2 class="popup__title" v-html="POPUP_TITLES.ADD_CATEGORY" />
+            <h2 class="popup__title" v-html="popupTitle" />
             <div class="input-blocks">
                 <input-field
                     v-model="state.title.value"
@@ -21,22 +21,32 @@
 </template>
 
 <script setup lang="ts">
-import { computed, reactive } from 'vue';
+import { computed, defineProps, reactive } from 'vue';
 import { useCategoriesStore } from '@/stores/categories';
 import { usePopupStore } from '@/stores/popup';
 import Popup from '@/components/_common/UI/Popup.vue';
 import SubmitButton from '@/components/_common/UI/SubmitButton.vue';
 import InputField from '@/components/_common/UI/InputField.vue';
 import { IInputData } from '@/interfaces/_common/Input';
-import { POPUP_TITLES } from '@/const-data/_common/titles';
+import {
+    POPUP_TITLES,
+    POPUP_BUTTON_TEXT,
+    POPUP_ACTION,
+} from '@/const-data/_common/popup';
 
-const categoriesStore = useCategoriesStore();
-const popupStore = usePopupStore();
+interface Props {
+    name: string;
+}
 
 interface State {
     title: IInputData;
     btnText: string;
 }
+
+const categoriesStore = useCategoriesStore();
+const popupStore = usePopupStore();
+
+const { name } = defineProps<Props>();
 
 const state = reactive<State>({
     title: {
@@ -46,7 +56,11 @@ const state = reactive<State>({
         placeholder: 'Category title',
         label: 'Category title:',
     },
-    btnText: 'Add',
+    btnText: POPUP_BUTTON_TEXT[name],
+});
+
+const popupTitle = computed<string>(() => {
+    return `${state.btnText} ${POPUP_TITLES.CATEGORY}`;
 });
 
 const isDisabled = computed<boolean>(() => {
@@ -58,7 +72,11 @@ async function submit() {
         return;
     }
     try {
-        await categoriesStore.addCategory(state.title.value);
+        if (name === POPUP_ACTION.ADD) {
+            await categoriesStore.addCategory(state.title.value);
+        } else if (name === POPUP_ACTION.EDIT) {
+            await categoriesStore.editCategory(state.title.value, popupStore.id);
+        }
     } catch (e) {
         console.error(e);
     } finally {

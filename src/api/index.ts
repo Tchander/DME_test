@@ -12,7 +12,7 @@ class Api {
         this.axios.defaults.baseURL = process.env.BASE_URL;
     }
 
-    private getPointUrl(pointName: string, urlParams: any) {
+    private getPointUrl(pointName: string, urlParams: any, paramId?: number | null) {
         const point = this.points[pointName];
         let result;
 
@@ -22,8 +22,8 @@ class Api {
             result = point;
         }
 
-        if (urlParams.id) {
-            result += (result[result.length - 1] === '/' ? '' : '/') + urlParams.id;
+        if (paramId) {
+            result += (result[result.length - 1] === '/' ? '' : '/') + paramId;
         }
 
         return result;
@@ -32,9 +32,10 @@ class Api {
     async post(
         pointName: string,
         body: any,
+        paramId?: number | null,
         { urlParams = {}, queryParams = {}, headers = {}, withCredentials = false } = {},
     ) {
-        const pointUrl = this.getPointUrl(pointName, urlParams);
+        const pointUrl = this.getPointUrl(pointName, urlParams, paramId);
 
         const { data } = await this.axios.post(pointUrl, body, {
             params: queryParams,
@@ -46,9 +47,10 @@ class Api {
 
     async get(
         pointName: string,
+        paramId?: number | null,
         { urlParams = {}, queryParams = {}, headers = {}, withCredentials = false } = {},
     ) {
-        const pointUrl = this.getPointUrl(pointName, urlParams);
+        const pointUrl = this.getPointUrl(pointName, urlParams, paramId);
 
         const { data } = await this.axios.get(pointUrl, {
             params: queryParams,
@@ -61,9 +63,10 @@ class Api {
     async patch(
         pointName: string,
         body: any,
+        paramId?: number | null,
         { urlParams = {}, queryParams = {}, headers = {} } = {},
     ) {
-        const pointUrl = this.getPointUrl(pointName, urlParams);
+        const pointUrl = this.getPointUrl(pointName, urlParams, paramId);
 
         const { data } = await this.axios.patch(pointUrl, body, {
             params: queryParams,
@@ -75,9 +78,10 @@ class Api {
     async put(
         pointName: string,
         body: any,
+        paramId?: number | null,
         { urlParams = {}, queryParams = {}, headers = {} } = {},
     ) {
-        const pointUrl = this.getPointUrl(pointName, urlParams);
+        const pointUrl = this.getPointUrl(pointName, urlParams, paramId);
 
         const { data } = await this.axios.put(pointUrl, body, {
             params: queryParams,
@@ -88,9 +92,10 @@ class Api {
 
     async delete(
         pointName: string,
+        paramId?: number | null,
         { urlParams = {}, queryParams = {}, headers = {} } = {},
     ) {
-        const pointUrl = this.getPointUrl(pointName, urlParams);
+        const pointUrl = this.getPointUrl(pointName, urlParams, paramId);
 
         const { data } = await this.axios.delete(pointUrl, {
             params: queryParams,

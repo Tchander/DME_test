@@ -1,7 +1,7 @@
 <template>
     <transition name="fade">
         <div>
-            <component :is="currentPopup" v-if="popup" v-bind="popupMeta" />
+            <component :is="currentPopup" v-if="popup" :name="name" />
         </div>
     </transition>
 </template>
@@ -13,7 +13,7 @@ import { usePopupStore } from '@/stores/popup';
 import { popupsMapper } from '@/helpers/popups';
 
 const popupStore = usePopupStore();
-const { popup, popupMeta } = storeToRefs(popupStore);
+const { popup, name } = storeToRefs(popupStore);
 
 const currentPopup = computed(() => {
     if (popup.value) {

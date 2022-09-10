@@ -1,33 +1,42 @@
 import { defineStore } from 'pinia';
 import { STORE_NAMESPACES } from '@/const-data/namespaces';
 
+interface PopupState {
+    popup: string;
+    name?: string;
+    id?: number | null;
+}
+
+const FIXED = 'fixed';
+
 export const usePopupStore = defineStore(STORE_NAMESPACES.POPUP, {
-    state: () => ({
+    state: (): PopupState => ({
         popup: '',
-        popupMeta: {},
+        name: '',
+        id: null,
     }),
 
     getters: {},
 
     actions: {
-        showPopup(params: any) {
-            if (typeof params === 'string') {
-                this.popup = params;
-                this.popupMeta = {};
-            } else {
-                const { name, ...meta } = params;
-                this.popup = name || 'feedback-mini';
-                this.popupMeta = meta;
+        showPopup(params: string, name?: string, id?: number) {
+            this.popup = params;
+            if (id) {
+                this.id = id;
             }
-            if (!document.body.classList.contains('fixed')) {
-                document.body.classList.add('fixed');
+            if (name) {
+                this.name = name;
+            }
+            if (!document.body.classList.contains(FIXED)) {
+                document.body.classList.add(FIXED);
             }
         },
 
         closePopup() {
             this.popup = '';
-            this.popupMeta = {};
-            document.body.classList.remove('fixed');
+            this.name = '';
+            this.id = null;
+            document.body.classList.remove(FIXED);
         },
     },
 });

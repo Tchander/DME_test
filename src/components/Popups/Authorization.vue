@@ -30,7 +30,7 @@ import SubmitButton from '@/components/_common/UI/SubmitButton.vue';
 import InputField from '@/components/_common/UI/InputField.vue';
 import { IInputData } from '@/interfaces/_common/Input';
 import { ROUTES } from '@/const-data/_common/routesInfo';
-import { POPUP_TITLES } from '@/const-data/_common/titles';
+import { POPUP_TITLES } from '@/const-data/_common/popup';
 
 interface State {
     inputList: IInputData[];

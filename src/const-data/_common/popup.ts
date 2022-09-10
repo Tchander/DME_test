@@ -1,8 +1,25 @@
+import { TButtons } from '@/types/popups';
+
 export const POPUP_MAPPER = {
     AUTHORIZATION: 'authorization',
-    ADD_CATEGORY: 'add-category',
-    ADD_SUBCATEGORY: 'add-subcategory',
-    EDIT_CATEGORY: 'edit-category',
-    EDIT_SUBCATEGORY: 'edit-subcategory',
-    ADD_EQUIPMENT: 'add-equipment',
+    CATEGORY: 'category-popup',
+    SUBCATEGORY: 'subcategory-popup',
+    EQUIPMENT: 'equipment-popup',
+};
+
+export const POPUP_ACTION = {
+    ADD: 'add',
+    EDIT: 'edit',
+};
+
+export const POPUP_BUTTON_TEXT: TButtons = {
+    add: 'Add',
+    edit: 'Edit',
+};
+
+export const POPUP_TITLES = {
+    CATEGORY: 'category',
+    SUBCATEGORY: 'subcategory',
+    EQUIPMENT: 'equipment',
+    AUTHORIZATION: 'Authorization',
 };

@@ -15,15 +15,17 @@ import EditPencil from '@/components/_common/SvgTemplates/EditPencil.vue';
 interface Props {
     title: string;
     isActive?: boolean;
-    name: string;
+    popup: string;
+    name?: string;
+    itemId?: number;
 }
 
-const { title, isActive = false, name } = defineProps<Props>();
+const { title, isActive = false, popup, name, itemId } = defineProps<Props>();
 
 const popupStore = usePopupStore();
 
 function openModal() {
-    popupStore.showPopup(name);
+    popupStore.showPopup(popup, name, itemId);
 }
 </script>
 

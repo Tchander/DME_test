@@ -14,9 +14,13 @@ export const useEquipmentsStore = defineStore(STORE_NAMESPACES.EQUIPMENTS, {
     actions: {
         async getEquipments(subcategoryId: string | string[]) {
             try {
-                const response: IEquipmentBackendData[] = await api.get(API.EQUIPMENTS, {
-                    urlParams: subcategoryId,
-                });
+                const response: IEquipmentBackendData[] = await api.get(
+                    API.EQUIPMENTS,
+                    undefined,
+                    {
+                        urlParams: subcategoryId,
+                    },
+                );
                 this.equipments = response.map((data: IEquipmentBackendData) => ({
                     subcategoryId: data.albumId,
                     equipmentId: data.id,
@@ -32,6 +36,7 @@ export const useEquipmentsStore = defineStore(STORE_NAMESPACES.EQUIPMENTS, {
             text: string,
             image: string,
             subcategoryId: string | string[],
+            id: number | null,
         ) {
             try {
                 const response = await api.post(
@@ -40,6 +45,7 @@ export const useEquipmentsStore = defineStore(STORE_NAMESPACES.EQUIPMENTS, {
                         title: text,
                         url: image,
                     },
+                    id,
                     {
                         urlParams: subcategoryId,
                     },

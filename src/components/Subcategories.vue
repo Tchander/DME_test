@@ -2,7 +2,8 @@
     <div class="subcategories">
         <div class="menu-column">
             <add-new-item
-                :name="POPUP_MAPPER.ADD_SUBCATEGORY"
+                :popup="POPUP_MAPPER.SUBCATEGORY"
+                :name="POPUP_ACTION.ADD"
                 :title="MENU_TITLES.SUBCATEGORIES"
             />
             <list-item
@@ -10,7 +11,9 @@
                 :key="subcategory.subcategoryId"
                 :title="subcategory.title"
                 :is-active="state.activeSubcategoryId === subcategory.subcategoryId"
-                :name="POPUP_MAPPER.EDIT_SUBCATEGORY"
+                :item-id="subcategory.subcategoryId"
+                :popup="POPUP_MAPPER.SUBCATEGORY"
+                :name="POPUP_ACTION.EDIT"
                 @click="openEquipments(subcategory.subcategoryId)"
             />
         </div>
@@ -27,7 +30,7 @@ import AddNewItem from '@/components/_common/UI/AddNewItem.vue';
 import ListItem from '@/components/_common/UI/ListItem.vue';
 import { MENU_TITLES } from '@/const-data/_common/titles';
 import { ROUTES } from '@/const-data/_common/routesInfo';
-import { POPUP_MAPPER } from '@/const-data/_common/popup';
+import { POPUP_MAPPER, POPUP_ACTION } from '@/const-data/_common/popup';
 
 interface State {
     activeSubcategoryId: number | null;

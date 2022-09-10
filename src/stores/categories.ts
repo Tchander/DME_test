@@ -37,5 +37,29 @@ export const useCategoriesStore = defineStore(STORE_NAMESPACES.CATEGORIES, {
                 console.error(e);
             }
         },
+
+        async editCategory(title: string, id?: number | null) {
+            try {
+                const response: ICategoriesBackendData = await api.put(
+                    API.CATEGORIES,
+                    {
+                        id,
+                        username: title,
+                    },
+                    id,
+                );
+                const index = this.categories.findIndex((el) => {
+                    return el.categoryId === id;
+                });
+                if (index !== -1) {
+                    this.categories.splice(index, 1, {
+                        categoryId: response.id,
+                        title: response.username,
+                    });
+                }
+            } catch (e) {
+                console.error(e);
+            }
+        },
     },
 });
