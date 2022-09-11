@@ -16,7 +16,7 @@ import { ROUTES } from '@/const-data/_common/routesInfo';
 const route = useRoute();
 
 const headerDisplay = computed<boolean>(() => {
-    return route.path !== ROUTES.HOME.path;
+    return route?.path !== ROUTES.HOME.path;
 });
 </script>
 

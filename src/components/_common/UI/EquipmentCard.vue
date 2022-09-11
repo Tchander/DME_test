@@ -1,5 +1,6 @@
 <template>
     <div class="card">
+        <ui-checkbox v-model="state.isChosen" class="card__checkbox" />
         <div class="card__image-wrapper">
             <img class="card__image" :src="image" :alt="title" />
         </div>
@@ -9,7 +10,8 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, withDefaults } from 'vue';
+import { defineProps, reactive, withDefaults } from 'vue';
+import UiCheckbox from '@/components/_common/UI/UiCheckbox.vue';
 
 interface Props {
     image?: string;
@@ -23,7 +25,15 @@ const { image, title, text } = withDefaults(defineProps<Props>(), {
     text: '',
 });
 
-// Experimental Reactivity Transform via
+interface State {
+    isChosen: boolean;
+}
+
+const state = reactive<State>({
+    isChosen: false,
+});
+
+// Experimental Reactivity Transform with defaults via
 // const { image, title = 'E1039', text } = defineProps<Props>();
 // doesn't work here
 // https://vuejs.org/guide/typescript/composition-api.html#typing-component-props
@@ -33,10 +43,17 @@ const { image, title, text } = withDefaults(defineProps<Props>(), {
 .card {
     display: flex;
     flex-direction: column;
+    position: relative;
     padding: 16px 10px;
     box-sizing: border-box;
     border: 1px solid $light-gray;
     min-height: 272px;
+
+    &__checkbox {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+    }
 
     &__image-wrapper {
         margin: 0 auto 20px;

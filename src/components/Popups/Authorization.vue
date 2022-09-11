@@ -1,5 +1,5 @@
 <template>
-    <popup class="authorization-popup">
+    <ui-popup class="authorization-popup">
         <form class="popup__wrapper" autocomplete="off" @submit.prevent="submit">
             <h2 class="popup__title" v-html="POPUP_TITLES.AUTHORIZATION" />
             <div class="input-blocks">
@@ -19,13 +19,13 @@
                 :disabled="isDisabled"
             />
         </form>
-    </popup>
+    </ui-popup>
 </template>
 
 <script setup lang="ts">
 import { reactive, computed } from 'vue';
 import { useRouter } from 'vue-router';
-import Popup from '@/components/_common/UI/Popup.vue';
+import UiPopup from '@/components/_common/UI/UiPopup.vue';
 import SubmitButton from '@/components/_common/UI/SubmitButton.vue';
 import InputField from '@/components/_common/UI/InputField.vue';
 import { IInputData } from '@/interfaces/_common/Input';

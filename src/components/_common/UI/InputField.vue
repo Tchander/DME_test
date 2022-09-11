@@ -1,6 +1,6 @@
 <template>
     <div class="input-wrapper">
-        <label class="input__label" v-html="props.label" />
+        <label v-if="label" class="input__label" v-html="props.label" />
         <input
             v-model="model"
             :type="props.type"
