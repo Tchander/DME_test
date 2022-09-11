@@ -1,6 +1,6 @@
 <template>
     <div class="item" :class="{ item_active: isActive }">
-        <h5 class="item__title" v-html="title" />
+        <h5 class="item__title" :title="title" v-html="title" />
         <div class="item__icon" @click.stop="openModal">
             <edit-pencil />
         </div>
@@ -49,6 +49,11 @@ function openModal() {
         @include font(14, 16, 500);
         color: $mainColor;
         transition: color 0.3s ease-in-out;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
     }
 
     &__icon {

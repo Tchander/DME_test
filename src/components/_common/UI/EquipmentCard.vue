@@ -5,7 +5,7 @@
             <img class="card__image" :src="image" :alt="title" />
         </div>
         <h4 class="card__title" v-html="title" />
-        <p class="card__text" v-html="text" />
+        <p class="card__text" :title="text" v-html="text" />
     </div>
 </template>
 
@@ -74,6 +74,11 @@ const state = reactive<State>({
     &__text {
         @include font(14, 16.8, 400);
         color: $gray;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
     }
 }
 </style>

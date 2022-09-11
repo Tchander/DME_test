@@ -63,7 +63,7 @@ const state = reactive<State>({
 });
 
 const popupTitle = computed<string>(() => {
-    return `${state.btnText} ${POPUP_TITLES.CATEGORY}`;
+    return `${state.btnText} ${POPUP_TITLES.SUBCATEGORY}`;
 });
 
 const isDisabled = computed<boolean>(() => {
