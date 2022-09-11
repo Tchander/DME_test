@@ -24,7 +24,7 @@ const model = computed({
     width: 16px;
     height: 16px;
     box-sizing: border-box;
-    border: 1px solid $light-gray;
+    border: 2px solid $light-gray;
     cursor: pointer;
 
     &:focus-visible {
