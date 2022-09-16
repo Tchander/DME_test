@@ -7,7 +7,7 @@ import { computed, defineEmits, defineProps } from 'vue';
 import { EVENTS_MAPPER } from '@/const-data/_common/emits';
 
 interface Props {
-    modelValue: string;
+    modelValue: boolean;
 }
 
 const props = defineProps<Props>();
