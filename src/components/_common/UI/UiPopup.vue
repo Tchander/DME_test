@@ -30,7 +30,7 @@ interface Props {
 const { unclosed = false } = defineProps<Props>();
 
 watch(
-    () => route.path,
+    () => route?.path,
     () => {
         popupStore.closePopup();
     },
