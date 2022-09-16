@@ -1,10 +1,10 @@
 import { defineStore } from 'pinia';
 import api from '@/api';
-import { STORE_NAMESPACES } from '@/const-data/namespaces';
-import { ICategoriesState, ICategoriesBackendData } from '@/interfaces/stores/Categories';
+import { STORE_ID } from '@/enums';
+import { ICategoriesState, ICategoriesBackendData } from '@/types/stores/categories';
 import { API } from '@/const-data/api';
 
-export const useCategoriesStore = defineStore(STORE_NAMESPACES.CATEGORIES, {
+export const useCategoriesStore = defineStore(STORE_ID.CATEGORIES, {
     state: (): ICategoriesState => ({
         categories: [],
     }),

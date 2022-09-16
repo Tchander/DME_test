@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { STORE_NAMESPACES } from '@/const-data/namespaces';
+import { STORE_ID } from '@/enums';
 
 interface PopupState {
     popup: string;
@@ -9,7 +9,7 @@ interface PopupState {
 
 const FIXED = 'fixed';
 
-export const usePopupStore = defineStore(STORE_NAMESPACES.POPUP, {
+export const usePopupStore = defineStore(STORE_ID.POPUP, {
     state: (): PopupState => ({
         popup: '',
         name: '',

@@ -1,13 +1,13 @@
 import { defineStore } from 'pinia';
 import api from '@/api';
-import { STORE_NAMESPACES } from '@/const-data/namespaces';
+import { STORE_ID } from '@/enums';
 import {
     ISubcategoriesBackendData,
     ISubcategoriesState,
-} from '@/interfaces/stores/Subcategories';
+} from '@/types/stores/subcategories';
 import { API } from '@/const-data/api';
 
-export const useSubcategoriesStore = defineStore(STORE_NAMESPACES.SUBCATEGORIES, {
+export const useSubcategoriesStore = defineStore(STORE_ID.SUBCATEGORIES, {
     state: (): ISubcategoriesState => ({
         subcategories: [],
     }),

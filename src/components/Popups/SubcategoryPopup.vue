@@ -28,7 +28,7 @@ import { usePopupStore } from '@/stores/popup';
 import UiPopup from '@/components/_common/UI/UiPopup.vue';
 import SubmitButton from '@/components/_common/UI/SubmitButton.vue';
 import InputField from '@/components/_common/UI/InputField.vue';
-import { IInputData } from '@/interfaces/_common/Input';
+import { IInputData } from '@/types/_common/input';
 import {
     POPUP_ACTION,
     POPUP_BUTTON_TEXT,
