@@ -47,5 +47,7 @@ module.exports = {
         'global-require': 'off',
         'import/no-dynamic-require': 'off',
         'lines-between-class-members': 'off',
+        'no-shadow': 'off',
+        'no-unused-vars': 'off',
     },
 };

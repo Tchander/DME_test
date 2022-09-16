@@ -28,7 +28,7 @@ import { useEquipmentsStore } from '@/stores/equipments';
 import AddNewItem from '@/components/_common/UI/AddNewItem.vue';
 import EquipmentCard from '@/components/_common/UI/EquipmentCard.vue';
 import SearchItem from '@/components/_common/UI/SearchItem.vue';
-import { IEquipmentData } from '@/interfaces/stores/Equipments';
+import { IEquipmentData } from '@/types/stores/equipments';
 import { MENU_TITLES } from '@/const-data/_common/titles';
 import { POPUP_MAPPER, POPUP_ACTION } from '@/const-data/_common/popup';
 

@@ -28,7 +28,7 @@ import { useRouter } from 'vue-router';
 import UiPopup from '@/components/_common/UI/UiPopup.vue';
 import SubmitButton from '@/components/_common/UI/SubmitButton.vue';
 import InputField from '@/components/_common/UI/InputField.vue';
-import { IInputData } from '@/interfaces/_common/Input';
+import { IInputData } from '@/types/_common/input';
 import { ROUTES } from '@/const-data/_common/routesInfo';
 import { POPUP_TITLES } from '@/const-data/_common/popup';
 

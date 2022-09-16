@@ -1,10 +1,10 @@
 import { defineStore } from 'pinia';
 import api from '@/api';
-import { STORE_NAMESPACES } from '@/const-data/namespaces';
-import { IEquipmentState, IEquipmentBackendData } from '@/interfaces/stores/Equipments';
+import { STORE_ID } from '@/enums';
+import { IEquipmentState, IEquipmentBackendData } from '@/types/stores/equipments';
 import { API } from '@/const-data/api';
 
-export const useEquipmentsStore = defineStore(STORE_NAMESPACES.EQUIPMENTS, {
+export const useEquipmentsStore = defineStore(STORE_ID.EQUIPMENTS, {
     state: (): IEquipmentState => ({
         equipments: [],
     }),
